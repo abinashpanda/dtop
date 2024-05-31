@@ -1,12 +1,11 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 
-	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/api/types/container"
+	"github.com/abinashpanda/dtop/docker"
+
 	"github.com/docker/docker/client"
 
 	"github.com/charmbracelet/bubbles/table"
@@ -49,15 +48,6 @@ func (m model) View() string {
 	return baseStyle.Render(m.table.View())
 }
 
-type containerStat struct {
-	id      string
-	image   string
-	command string
-	ports   []types.Port
-	state   string
-	status  string
-}
-
 func main() {
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
@@ -65,22 +55,9 @@ func main() {
 	}
 	defer cli.Close()
 
-	containers, err := cli.ContainerList(context.Background(), container.ListOptions{All: true})
+	containerStats, err := docker.GetContainerStats(cli)
 	if err != nil {
 		panic(err)
-	}
-
-	containerStats := []containerStat{}
-
-	for _, ctr := range containers {
-		containerStats = append(containerStats, containerStat{
-			id:      ctr.ID,
-			image:   ctr.Image,
-			command: ctr.Command,
-			ports:   ctr.Ports,
-			state:   ctr.State,
-			status:  ctr.Status,
-		})
 	}
 
 	columns := []table.Column{
@@ -93,10 +70,10 @@ func main() {
 	rows := []table.Row{}
 	for _, ctrStats := range containerStats {
 		rows = append(rows, table.Row{
-			trim(ctrStats.id, 10),
-			trim(ctrStats.image, 20),
-			ctrStats.status,
-			ctrStats.state,
+			trim(ctrStats.ID, 10),
+			trim(ctrStats.Image, 20),
+			ctrStats.Status,
+			ctrStats.State,
 		})
 	}
 
