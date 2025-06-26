@@ -2,9 +2,9 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "test-ink",
+      "name": "dtop",
       "dependencies": {
-        "@tanstack/react-query": "^5.81.2",
+        "@tanstack/react-query": "5.81.2",
         "ink": "6.0.1",
         "react": "19.1.0",
       },
