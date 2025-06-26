@@ -1,0 +1,25 @@
+{
+  "name": "dtop",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.tsx",
+    "start": "bun run src/index.tsx"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.29.0",
+    "@types/bun": "latest",
+    "@types/react": "19.1.8",
+    "eslint": "9.29.0",
+    "eslint-plugin-react": "7.37.5",
+    "globals": "16.2.0",
+    "typescript-eslint": "8.35.0"
+  },
+  "peerDependencies": {
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.81.2",
+    "ink": "6.0.1",
+    "react": "19.1.0"
+  }
+}
