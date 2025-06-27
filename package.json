@@ -12,6 +12,7 @@
     "eslint": "9.29.0",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.2.0",
+    "react-devtools-core": "6.1.2",
     "typescript-eslint": "8.35.0"
   },
   "peerDependencies": {
@@ -20,6 +21,8 @@
   "dependencies": {
     "@tanstack/react-query": "5.81.2",
     "ink": "6.0.1",
-    "react": "19.1.0"
+    "react": "19.1.0",
+    "ts-pattern": "5.7.1",
+    "zod": "3.25.67"
   }
 }
